@@ -24,7 +24,7 @@
 
 <script>
 export default {
-    name:'Buscador'
+    name:'buscador', 
     data(){
         return{
             buscar:''
