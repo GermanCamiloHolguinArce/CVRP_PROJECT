@@ -8,8 +8,8 @@ const credenciales = { 'username': USUARIO, 'password': PASSWORD }
 const getToken = async() => {
     const r = await fetch(
         TOKEN_URL, {
-            method = 'POST',
-            body = JSON.stringify(credenciales),
+            method: 'POST',
+            body: JSON.stringify(credenciales),
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
@@ -25,7 +25,7 @@ export default {
         const token = await getToken();
 
         const res = await fetch(DOCS_URL, {
-            method = 'GET',
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer' + token.access
@@ -35,11 +35,11 @@ export default {
         console.log(items);
         return items.results;
     },
-    insert: async(doc) {
+    insert: async(doc) => {
         const token = await getToken();
 
         const res = await fetch(DOCS_URL, {
-            method = 'POST',
+            method: 'POST',
             body: JSON.stringify(doc),
             headers: {
                 'Content-Type': 'application/json',
@@ -53,13 +53,13 @@ export default {
         const data = await res.json();
         return data;
     },
-    update: async(doc) {
+    update: async(doc) => {
         const token = await getToken();
         let url = DOCS_URL + doc.id + '/'
 
 
         const res = await fetch(url, {
-            method = 'PUT',
+            method: 'PUT',
             body: JSON.stringify(doc),
             headers: {
                 'Content-Type': 'application/json',
@@ -73,4 +73,18 @@ export default {
         const data = await res.json();
         return data;
     },
+    deleteForId: async(id) => {
+        const token = await getToken();
+        let url = DOCS_URL + id + '/'
+
+
+        fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer' + token.access
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
 }

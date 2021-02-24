@@ -65,6 +65,7 @@ export default {
       menu:[
         {ruta:'/', nombre:'Inicio', icono:'mdi-folder'},
         {ruta:'/pixa', nombre:'Imagenes', icono:'mdi-folder'},
+        {ruta:'/docs', nombre:'Documentos', icono:'mdi-folder'},
       ],
       mostrarMenu:false,
       miniVariant:true,
